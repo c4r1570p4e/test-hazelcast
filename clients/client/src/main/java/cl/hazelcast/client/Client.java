@@ -15,6 +15,8 @@ public class Client {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(clientConfig);
         IMap map = client.getMap("customers");
         System.out.println("Map Size:" + map.size());
+        
+        
     }
 
 }
