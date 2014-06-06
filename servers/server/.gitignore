@@ -1,1 +1,11 @@
+*.iml
+.idea/*
+**/target/*
+**/.project
+**/.settings/*
+**/.classpath
+/.project
+/.settings/**
 /target
+/.classpath
+/.springBeans
