@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -33,8 +34,14 @@ public class ReadThroughWriteBehindTest {
 	private static final String VALUE5 = "VALUE5";
 
 	@Autowired
+	@Qualifier("rtwbTest")
 	private ReadThroughWriteBehind rtwb;
 
+	
+	@Autowired
+	@Qualifier("rtwbNoPreloadTest")
+	private ReadThroughWriteBehind rtwbNoPreload;
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -77,6 +84,11 @@ public class ReadThroughWriteBehindTest {
 	public void loadAllKeysTest() {
 		assertThat(rtwb.loadAllKeys()).containsOnly(KEY1, KEY2, KEY3, KEY4);
 	}
+	
+	@Test
+	public void loadAllKeysNoPreloadTest() {
+		assertThat(rtwbNoPreload.loadAllKeys()).isNull();
+	}	
 
 	@Test
 	public void loadAllTest() {

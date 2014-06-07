@@ -30,7 +30,7 @@
 				eviction-policy="NONE" max-size-policy="PER_NODE" max-size="0"
 				eviction-percentage="25" merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy">
 				<hz:map-store enabled="true" write-delay-seconds="5"
-					implementation="rtwbMap1" />
+					initial-mode="EAGER" implementation="rtwbMap1" />
 			</hz:map>
 
 
@@ -41,6 +41,9 @@
 	<bean id="rtwbMap1" class="cl.hazelcast.server.rw.ReadThroughWriteBehind">
 		<constructor-arg>
 			<value>TABLE1</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>true</value>
 		</constructor-arg>
 	</bean>
 

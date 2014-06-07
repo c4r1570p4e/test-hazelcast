@@ -14,7 +14,8 @@
 		<constructor-arg ref="dataSource" />
 	</bean>
 
-	<bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+	<bean
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg ref="dataSource" />
 	</bean>
 
@@ -27,9 +28,19 @@
 		<constructor-arg>
 			<value>TABLETEST</value>
 		</constructor-arg>
+		<constructor-arg>
+			<value>true</value>
+		</constructor-arg>
 	</bean>
 
-
+	<bean id="rtwbNoPreloadTest" class="cl.hazelcast.server.rw.ReadThroughWriteBehind">
+		<constructor-arg>
+			<value>TABLETEST</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>false</value>
+		</constructor-arg>
+	</bean>
 
 
 </beans>

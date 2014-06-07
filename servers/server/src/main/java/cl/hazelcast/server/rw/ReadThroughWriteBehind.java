@@ -36,30 +36,33 @@ public class ReadThroughWriteBehind implements MapLoader<String, String>, MapSto
 
 	private String tableName;
 
+	private boolean preload;
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
 	private NamedParameterJdbcOperations namedParameterJdbcOperations;
 
-	public ReadThroughWriteBehind(String tableName) {
+	public ReadThroughWriteBehind(String tableName, boolean preload) {
 		this.tableName = tableName;
+		this.preload = preload;
 	}
 
 	@Override
 	public void init(HazelcastInstance hazelcastInstance, Properties properties, String mapName) {
-		log.debug("init " + mapName);
+		log.debug(mapName + " : init()");
 		this.mapName = mapName;
 	}
 
 	@Override
 	public void destroy() {
-		log.debug("destroy " + this.mapName);
+		log.debug(mapName + " : destroy ");
 	}
 
 	@Override
 	public String load(String key) {
-		log.debug("load {}", key);
+		log.debug(mapName + " : load {}", key);
 
 		String sql = "Select VAL from " + tableName + " where ID = ?";
 
@@ -87,7 +90,16 @@ public class ReadThroughWriteBehind implements MapLoader<String, String>, MapSto
 
 	@Override
 	public Map<String, String> loadAll(Collection<String> keys) {
-		log.debug("loadAll");
+
+		String debugKeys = "";
+
+		if (log.isDebugEnabled()) {
+			for (String key : keys) {
+				debugKeys = debugKeys + key + ",";
+			}
+		}
+
+		log.debug(mapName + " : loadAll {}", debugKeys);
 
 		String sql = "Select ID , VAL from " + tableName + " where ID in ( :ids )";
 
@@ -107,17 +119,20 @@ public class ReadThroughWriteBehind implements MapLoader<String, String>, MapSto
 
 	@Override
 	public Set<String> loadAllKeys() {
-		log.debug("loadAllKeys");
+		log.debug(mapName + " : loadAllKeys : " + this.preload);
 
-		String sql = "Select ID from " + tableName;
-
-		return new HashSet<String>(jdbcTemplate.queryForList(sql, String.class));
+		if (preload) {
+			String sql = "Select ID from " + tableName;
+			return new HashSet<String>(jdbcTemplate.queryForList(sql, String.class));
+		} else {
+			return null;
+		}
 
 	}
 
 	@Override
 	public void store(String key, String value) {
-		log.debug("store {} {}", key, value);
+		log.debug(mapName + " : store {} {}", key, value);
 
 		String sql = "MERGE INTO " + tableName + " KEY(ID) VALUES(?, ?)";
 
@@ -140,7 +155,7 @@ public class ReadThroughWriteBehind implements MapLoader<String, String>, MapSto
 
 	@Override
 	public void storeAll(Map<String, String> map) {
-		log.debug("storeAll");
+		log.debug(mapName + " : storeAll");
 
 		String sql = "MERGE INTO " + tableName + " KEY(ID) VALUES(?, ?)";
 		jdbcTemplate.batchUpdate(sql, toBatchParam(map));
@@ -148,7 +163,7 @@ public class ReadThroughWriteBehind implements MapLoader<String, String>, MapSto
 
 	@Override
 	public void delete(String key) {
-		log.debug("delete {}", key);
+		log.debug(mapName + " : delete {}", key);
 
 		String sql = "DELETE " + tableName + " WHERE ID = ?";
 
@@ -172,7 +187,7 @@ public class ReadThroughWriteBehind implements MapLoader<String, String>, MapSto
 
 	@Override
 	public void deleteAll(Collection<String> keys) {
-		log.debug("deleteAll");
+		log.debug(mapName + " : deleteAll");
 
 		String sql = "delete " + tableName + " where ID = ?";
 
