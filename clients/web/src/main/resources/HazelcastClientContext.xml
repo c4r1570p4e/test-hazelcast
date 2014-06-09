@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:hz="http://www.hazelcast.com/schema/spring"
+	xsi:schemaLocation="http://www.hazelcast.com/schema/spring http://www.hazelcast.com/schema/spring/hazelcast-spring-3.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<hz:client id="hazelcastClient">
+		<hz:group name="dev" password="dev-pass" />
+
+		<hz:properties>
+			<hz:property name="hazelcast.logging.type">slf4j</hz:property>
+		</hz:properties>
+
+		<hz:network connection-attempt-limit="3"
+			connection-attempt-period="3000" connection-timeout="1000"
+			redo-operation="false" smart-routing="false">
+			<hz:member>127.0.0.1:5701</hz:member>
+			<hz:member>127.0.0.1:5702</hz:member>
+		</hz:network>
+	</hz:client>
+
+	<hz:map id="map1" name="map1" instance-ref="hazelcastClient" />
+	<hz:map id="map2" name="map2" instance-ref="hazelcastClient" />
+	<hz:map id="map3" name="map3" instance-ref="hazelcastClient" />
+	
+
+
+</beans>
