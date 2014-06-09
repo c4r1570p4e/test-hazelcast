@@ -19,12 +19,34 @@
 			<hz:member>127.0.0.1:5701</hz:member>
 			<hz:member>127.0.0.1:5702</hz:member>
 		</hz:network>
+		
+		<hz:near-cache name="map4" 
+			cache-local-entries="false" 
+			eviction-policy="LRU" 
+			in-memory-format="BINARY" 
+			invalidate-on-change="true" 
+			max-idle-seconds="0" 
+			max-size="100" 
+			time-to-live-seconds="30" />
+		
+		<!-- invalidate on change = false -->	
+		<hz:near-cache name="map5" 
+			cache-local-entries="false" 
+			eviction-policy="LRU" 
+			in-memory-format="BINARY" 
+			invalidate-on-change="false" 
+			max-idle-seconds="0" 
+			max-size="100" 
+			time-to-live-seconds="30" />			
+		
 	</hz:client>
 
 	<hz:map id="map1" name="map1" instance-ref="hazelcastClient" />
 	<hz:map id="map2" name="map2" instance-ref="hazelcastClient" />
 	<hz:map id="map3" name="map3" instance-ref="hazelcastClient" />
+	<hz:map id="map4" name="map4" instance-ref="hazelcastClient" />
+	<hz:map id="map5" name="map5" instance-ref="hazelcastClient" />
 	
-
+	
 
 </beans>

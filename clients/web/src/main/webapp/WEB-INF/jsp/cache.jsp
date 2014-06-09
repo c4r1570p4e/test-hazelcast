@@ -53,18 +53,18 @@
 	%>
 
 	<%
-		for (Map.Entry<String, String> entry : map.entrySet()) {
+		for (String key : map.keySet()) {
 	%>
 	<form method="post" action="/web/mvc/cache">
 		<input name="cacheName" type="hidden" value="<%=cacheName%>" />
 		<table border="0">
 			<tr>
 				<td>ID :</td>
-				<td><input name="id" type="text" value="<%=entry.getKey()%>" /></td>
+				<td><input name="id" type="text" value="<%=key%>" /></td>
 
 				<td>VAL :</td>
 				<td><input name="val" type="text"
-					value="<%=entry.getValue()%>" /></td>
+					value="<%=map.get(key)%>" /></td>
 
 				<td><input type="submit" value="Modifier" /></td>
 			</tr>

@@ -2,7 +2,8 @@ DROP ALL OBJECTS;
 CREATE TABLE TABLE1(ID VARCHAR(255) PRIMARY KEY, VAL VARCHAR(255));
 CREATE TABLE TABLE2(ID VARCHAR(255) PRIMARY KEY, VAL VARCHAR(255));
 CREATE TABLE TABLE3(ID VARCHAR(255) PRIMARY KEY, VAL VARCHAR(255));
-
+CREATE TABLE TABLE4(ID VARCHAR(255) PRIMARY KEY, VAL VARCHAR(255));
+CREATE TABLE TABLE5(ID VARCHAR(255) PRIMARY KEY, VAL VARCHAR(255));
 
 
 insert into TABLE1 values('KEY1','VALUE1');
@@ -15,11 +16,6 @@ insert into TABLE1 values('KEY7','VALUE7');
 insert into TABLE1 values('KEY8','VALUE8');
 insert into TABLE1 values('KEY9','VALUE9');
 insert into TABLE1 values('KEY10','VALUE10');
-insert into TABLE1 values('KEY11','VALUE11');
-insert into TABLE1 values('KEY12','VALUE12');
-insert into TABLE1 values('KEY13','VALUE13');
-insert into TABLE1 values('KEY14','VALUE14');
-insert into TABLE1 values('KEY15','VALUE15');
 
 insert into TABLE2 values('KEY1','VALUE1');
 insert into TABLE2 values('KEY2','VALUE2');
@@ -31,11 +27,6 @@ insert into TABLE2 values('KEY7','VALUE7');
 insert into TABLE2 values('KEY8','VALUE8');
 insert into TABLE2 values('KEY9','VALUE9');
 insert into TABLE2 values('KEY10','VALUE10');
-insert into TABLE2 values('KEY11','VALUE11');
-insert into TABLE2 values('KEY12','VALUE12');
-insert into TABLE2 values('KEY13','VALUE13');
-insert into TABLE2 values('KEY14','VALUE14');
-insert into TABLE2 values('KEY15','VALUE15');
 
 insert into TABLE3 values('KEY1','VALUE1');
 insert into TABLE3 values('KEY2','VALUE2');
@@ -47,17 +38,35 @@ insert into TABLE3 values('KEY7','VALUE7');
 insert into TABLE3 values('KEY8','VALUE8');
 insert into TABLE3 values('KEY9','VALUE9');
 insert into TABLE3 values('KEY10','VALUE10');
-insert into TABLE3 values('KEY11','VALUE11');
-insert into TABLE3 values('KEY12','VALUE12');
-insert into TABLE3 values('KEY13','VALUE13');
-insert into TABLE3 values('KEY14','VALUE14');
-insert into TABLE3 values('KEY15','VALUE15');
+
+insert into TABLE4 values('KEY1','VALUE1');
+insert into TABLE4 values('KEY2','VALUE2');
+insert into TABLE4 values('KEY3','VALUE3');
+insert into TABLE4 values('KEY4','VALUE4');
+insert into TABLE4 values('KEY5','VALUE5');
+insert into TABLE4 values('KEY6','VALUE6');
+insert into TABLE4 values('KEY7','VALUE7');
+insert into TABLE4 values('KEY8','VALUE8');
+insert into TABLE4 values('KEY9','VALUE9');
+insert into TABLE4 values('KEY10','VALUE10');
+
+insert into TABLE5 values('KEY1','VALUE1');
+insert into TABLE5 values('KEY2','VALUE2');
+insert into TABLE5 values('KEY3','VALUE3');
+insert into TABLE5 values('KEY4','VALUE4');
+insert into TABLE5 values('KEY5','VALUE5');
+insert into TABLE5 values('KEY6','VALUE6');
+insert into TABLE5 values('KEY7','VALUE7');
+insert into TABLE5 values('KEY8','VALUE8');
+insert into TABLE5 values('KEY9','VALUE9');
+insert into TABLE5 values('KEY10','VALUE10');
 
 
-
-
-
-
+--insert into TABLE1 values('KEY11','VALUE11');
+--insert into TABLE1 values('KEY12','VALUE12');
+--insert into TABLE1 values('KEY13','VALUE13');
+--insert into TABLE1 values('KEY14','VALUE14');
+--insert into TABLE1 values('KEY15','VALUE15');
 --insert into TABLE1 values('KEY16','VALUE16');
 --insert into TABLE1 values('KEY17','VALUE17');
 --insert into TABLE1 values('KEY18','VALUE18');

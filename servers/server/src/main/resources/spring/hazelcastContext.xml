@@ -25,6 +25,7 @@
 			</hz:network>
 
 
+			<!-- backup count 1 -->
 			<hz:map name="map1" 
 				in-memory-format="BINARY" 
 				backup-count="1"
@@ -36,24 +37,11 @@
 				max-size="0"
 				eviction-percentage="25" 
 				merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy">
-				<hz:map-store enabled="true" write-delay-seconds="5" initial-mode="EAGER" implementation="rtwbMap1" />
+				<hz:map-store enabled="true" write-delay-seconds="0" initial-mode="LAZY" implementation="rtwbMap1" />
 			</hz:map>
 
+			<!-- backup count 0 -->
 			<hz:map name="map2" 
-				in-memory-format="BINARY" 
-				backup-count="1"
-				async-backup-count="1" 
-				time-to-live-seconds="0" 
-				max-idle-seconds="0"
-				eviction-policy="NONE" 
-				max-size-policy="PER_NODE" 
-				max-size="0"
-				eviction-percentage="25" 
-				merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy">
-				<hz:map-store enabled="true" write-delay-seconds="5" initial-mode="EAGER" implementation="rtwbMap2" />
-			</hz:map>
-
-			<hz:map name="map3" 
 				in-memory-format="BINARY" 
 				backup-count="0"
 				async-backup-count="0" 
@@ -64,7 +52,51 @@
 				max-size="0"
 				eviction-percentage="25" 
 				merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy">
-				<hz:map-store enabled="true" write-delay-seconds="5" initial-mode="EAGER" implementation="rtwbMap3" />
+				<hz:map-store enabled="true" write-delay-seconds="0" initial-mode="LAZY" implementation="rtwbMap2" />
+			</hz:map>
+
+			<!-- backup count 1, write delay 10 secondes-->
+			<hz:map name="map3" 
+				in-memory-format="BINARY" 
+				backup-count="1"
+				async-backup-count="0" 
+				time-to-live-seconds="0" 
+				max-idle-seconds="0"
+				eviction-policy="NONE" 
+				max-size-policy="PER_NODE" 
+				max-size="0"
+				eviction-percentage="25" 
+				merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy">
+				<hz:map-store enabled="true" write-delay-seconds="10" initial-mode="LAZY" implementation="rtwbMap3" />
+			</hz:map>
+
+
+			<hz:map name="map4" 
+				in-memory-format="BINARY" 
+				backup-count="1"
+				async-backup-count="0" 
+				time-to-live-seconds="0" 
+				max-idle-seconds="0"
+				eviction-policy="NONE" 
+				max-size-policy="PER_NODE" 
+				max-size="0"
+				eviction-percentage="25" 
+				merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy">
+				<hz:map-store enabled="true" write-delay-seconds="0" initial-mode="LAZY" implementation="rtwbMap4" />
+			</hz:map>
+
+			<hz:map name="map5" 
+				in-memory-format="BINARY" 
+				backup-count="1"
+				async-backup-count="0" 
+				time-to-live-seconds="0" 
+				max-idle-seconds="0"
+				eviction-policy="NONE" 
+				max-size-policy="PER_NODE" 
+				max-size="0"
+				eviction-percentage="25" 
+				merge-policy="com.hazelcast.map.merge.PassThroughMergePolicy">
+				<hz:map-store enabled="true" write-delay-seconds="0" initial-mode="LAZY" implementation="rtwbMap5" />
 			</hz:map>
 
 		</hz:config>
@@ -97,6 +129,23 @@
 		</constructor-arg>
 	</bean>	
 	
+	<bean id="rtwbMap4" class="cl.hazelcast.server.rw.ReadThroughWriteBehind">
+		<constructor-arg>
+			<value>TABLE4</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>true</value>
+		</constructor-arg>
+	</bean>	
+	
+	<bean id="rtwbMap5" class="cl.hazelcast.server.rw.ReadThroughWriteBehind">
+		<constructor-arg>
+			<value>TABLE5</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>true</value>
+		</constructor-arg>
+	</bean>			
 
 	<context:annotation-config />
 

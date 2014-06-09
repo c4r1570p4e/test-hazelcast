@@ -22,6 +22,13 @@ public class CacheController {
 
 	@Resource(name = "map3")
 	private IMap<String, String> map3;
+	
+	@Resource(name = "map4")
+	private IMap<String, String> map4;
+	
+	@Resource(name = "map5")
+	private IMap<String, String> map5;
+
 
 	@RequestMapping("/cache")
 	public String cache(String cacheName, String id, String val, Model model) {
@@ -41,6 +48,12 @@ public class CacheController {
 				break;
 			case "map3":
 				map = map3;
+				break;
+			case "map4":
+				map = map4;
+				break;
+			case "map5":
+				map = map5;
 				break;
 			default:
 				map = null;
@@ -71,6 +84,8 @@ public class CacheController {
 		cacheNames.add("map1");
 		cacheNames.add("map2");
 		cacheNames.add("map3");
+		cacheNames.add("map4");
+		cacheNames.add("map5");
 
 	}
 
