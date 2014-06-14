@@ -74,6 +74,10 @@
 			<version>1.4</version>
 		</dependency>
 
+		<dependency>
+			<groupId>cl.hazelcast</groupId>
+			<artifactId>common</artifactId>
+		</dependency>
 
 		<!-- test -->
 
@@ -90,6 +94,7 @@
 			<groupId>org.easytesting</groupId>
 			<artifactId>fest-assert</artifactId>
 		</dependency>
+
 	</dependencies>
 
 </project>
