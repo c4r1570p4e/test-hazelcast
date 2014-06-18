@@ -22,17 +22,17 @@
 		
 		<hz:near-cache name="map4" 
 			cache-local-entries="false" 
-			eviction-policy="LRU" 
+			eviction-policy="LFU" 
 			in-memory-format="BINARY" 
 			invalidate-on-change="true" 
 			max-idle-seconds="0" 
 			max-size="100" 
-			time-to-live-seconds="30" />
+			time-to-live-seconds="0" />
 		
 		<!-- invalidate on change = false -->	
 		<hz:near-cache name="map5" 
 			cache-local-entries="false" 
-			eviction-policy="LRU" 
+			eviction-policy="LFU" 
 			in-memory-format="BINARY" 
 			invalidate-on-change="false" 
 			max-idle-seconds="0" 

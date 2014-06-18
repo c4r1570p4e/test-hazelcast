@@ -1,8 +1,5 @@
 package cl.hazelcast.client.gare;
 
-import static com.hazelcast.query.Predicates.equal;
-import static com.hazelcast.query.Predicates.ilike;
-import static com.hazelcast.query.Predicates.like;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.Collection;
@@ -19,6 +16,7 @@ import com.hazelcast.client.config.XmlClientConfigBuilder;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.query.Predicate;
+import com.hazelcast.query.Predicates;
 import com.hazelcast.query.SqlPredicate;
 
 public class TestMapGare {
@@ -51,8 +49,8 @@ public class TestMapGare {
 
 	@Test
 	public void recherche_nom() {
-		Predicate predicate = equal("nom", "Lille-Europe");
-
+		
+		Predicate predicate = Predicates.equal("nom", "Lille-Europe");
 		Collection<Gare> trouve = getMapGare().values(predicate);
 
 		assertThat(trouve.size()).isEqualTo(1);
@@ -62,8 +60,8 @@ public class TestMapGare {
 
 	@Test
 	public void recherche_nom_ilike() {
-		Predicate predicate = ilike("nom", "%lille%");
 
+		Predicate predicate = Predicates.ilike("nom", "%lille%");
 		Collection<Gare> trouve = getMapGare().values(predicate);
 
 		assertThat(trouve.size()).isEqualTo(17);
@@ -76,8 +74,8 @@ public class TestMapGare {
 
 	@Test
 	public void recherche_gare_voyageur() {
-		Predicate predicate = like("nature", "%Voyageur%");
 
+		Predicate predicate = Predicates.like("nature", "%Voyageur%");
 		Collection<Gare> trouve = getMapGare().values(predicate);
 
 		assertThat(trouve.size()).isEqualTo(3464);
@@ -86,12 +84,11 @@ public class TestMapGare {
 
 	@Test
 	public void recherche_gare_lille_voyageur_en_mode_sql() {
+
 		Predicate predicate = new SqlPredicate("nom ILIKE '%lille%' AND nature ILIKE '%voyageur%'");
-		
 		Collection<Gare> trouve = getMapGare().values(predicate);
 		
 		assertThat(trouve.size()).isEqualTo(8);
-		
 		
 	}
 	
